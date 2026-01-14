@@ -67,10 +67,37 @@ def load_model_and_data():
         return model_data, categorical_options, impression_defaults, impression_ranges
     
     except FileNotFoundError as e:
-        st.error(f"❌ Error: Required file not found - {e}")
+        st.error("🚫 **Application Setup Required**")
+        st.warning("""
+        **Missing Required Files**
+        
+        Please ensure the following files are in the application directory:
+        - `model.pkl` - The trained machine learning model
+        - `Dataset.csv` - The training dataset for reference values
+        
+        **To set up the application:**
+        1. Run `python train_model.py` to train and generate the model
+        2. Ensure `Dataset.csv` is in the same directory
+        3. Restart the application
+        """)
+        st.info(f"📁 Missing file: `{str(e).split(': ')[1] if ': ' in str(e) else e}`")
         st.stop()
     except Exception as e:
-        st.error(f"❌ Error loading model: {e}")
+        st.error("⚠️ **Application Error**")
+        st.warning("""
+        **Failed to Load Model Resources**
+        
+        There was an error loading the required model files. This could be due to:
+        - Corrupted model file (`model.pkl`)
+        - Incompatible model version
+        - Missing dependencies
+        
+        **To resolve:**
+        1. Delete `model.pkl` if it exists
+        2. Run `python train_model.py` to regenerate the model
+        3. Restart the application
+        """)
+        st.info(f"🔍 Technical details: `{str(e)}`")
         st.stop()
 
 # Load resources
