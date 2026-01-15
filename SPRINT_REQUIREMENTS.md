@@ -313,7 +313,6 @@ streamlit run app.py
 ---
 
 ## 📞 Support & Documentation
-
 - **Technical Issues:** Reference model_creation.ipynb for training details
 - **Model Questions:** Check performance metrics in model.pkl
 - **Feature Questions:** See feature importance rankings in app
